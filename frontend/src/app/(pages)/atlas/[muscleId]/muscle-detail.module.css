@@ -1,0 +1,323 @@
+.pageContainer {
+  min-height: 100vh;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  background: linear-gradient(180deg, #070b17 0%, #0f172a 100%);
+  color: var(--color-text);
+}
+
+.header {
+  max-width: 1200px;
+  margin: 0 auto var(--spacing-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.backButton {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.headerActions {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.favoriteBtn {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.favoriteBtn:hover {
+  background: var(--color-primary);
+  color: var(--color-dark);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--spacing-2xl);
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.description,
+.anatomy,
+.functions {
+  background: #111827;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+}
+
+.description h2,
+.anatomy h2,
+.functions h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.5rem;
+}
+
+.description p,
+.anatomy p {
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.functions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.functions li {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-md);
+  position: relative;
+  padding-left: var(--spacing-xl);
+}
+
+.functions li::before {
+  content: '✓';
+  position: absolute;
+  left: var(--spacing-md);
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+
+.exercises {
+  background: #111827;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+}
+
+.exercises h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.5rem;
+}
+
+.exerciseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.exerciseCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all 0.2s ease;
+}
+
+.exerciseCard:hover {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.exerciseHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.exerciseHeader h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  flex: 1;
+}
+
+.difficulty {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.equipment {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.9rem;
+}
+
+.addToWorkoutBtn {
+  width: 100%;
+  background: var(--color-primary);
+  color: var(--color-dark);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addToWorkoutBtn:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+
+.tips {
+  background: #111827;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+}
+
+.tips h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.5rem;
+}
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.tipCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tipCard:hover {
+  border-color: rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.tipNumber {
+  position: absolute;
+  top: -10px;
+  left: var(--spacing-lg);
+  width: 30px;
+  height: 30px;
+  background: var(--color-secondary);
+  color: var(--color-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border: 2px solid #111827;
+}
+
+.tipCard p {
+  margin: 0;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  padding-top: var(--spacing-sm);
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  background: linear-gradient(180deg, #070b17 0%, #0f172a 100%);
+  color: var(--color-text);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(245, 158, 11, 0.3);
+  border-top: 3px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .overview {
+    grid-template-columns: 1fr;
+  }
+
+  .exerciseGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tipsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .exerciseCard,
+  .tipCard {
+    padding: var(--spacing-md);
+  }
+
+  .exerciseHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+}
