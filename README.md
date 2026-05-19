@@ -4,11 +4,9 @@ GymLog is a full-stack MERN fitness diary app. Users can register, log in, manag
 
 ## Status
 
-All mandatory code requirements are implemented locally.
+All mandatory code requirements are implemented and deployed.
 
 Remaining final deliverables:
-- Deploy frontend and backend.
-- Add deployed URLs to this README.
 - Record the 5-10 minute video demo.
 - Attach a screenshot of passing Jest output if required by the instructor.
 
@@ -61,7 +59,7 @@ Remaining final deliverables:
 | Search/filter | Done: exercises and friends search |
 | 10+ Jest tests | Done: 39 tests |
 | Testing report | Done: `docs/TESTING_REPORT.md` |
-| Deployment | Pending |
+| Deployment | Done |
 | Video demo | Pending |
 
 ## Mongoose Models
@@ -251,19 +249,16 @@ Testing report: [docs/TESTING_REPORT.md](docs/TESTING_REPORT.md)
 
 ## Deployment
 
-Pending.
-
-Planned deployment:
+Deployed services:
 - MongoDB: MongoDB Atlas
-- Backend: Render or Railway
+- Backend: Render
 - Frontend: Vercel
 - Files: UploadThing
 
-Live URLs will be added here after deployment:
-
 ```txt
-Frontend: TBD
-Backend:  TBD
+Frontend: https://full-final-gym-log.vercel.app
+Backend:  https://gymlog-backend-v1f2.onrender.com
+Health:   https://gymlog-backend-v1f2.onrender.com/api/health
 ```
 
 ## Video Demo

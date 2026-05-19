@@ -69,6 +69,10 @@ This file tracks what is already implemented and what is still missing for the f
 - Frontend WebSocket connection through `RealtimeContext`.
 - Dashboard online friends list.
 - Dashboard live friends workout activity feed.
+- Frontend deployed to Vercel.
+- Backend deployed to Render.
+- MongoDB deployed to MongoDB Atlas.
+- UploadThing configured with `UPLOADTHING_TOKEN`.
 
 ### Tests
 
@@ -96,11 +100,9 @@ frontend: 8 passing tests
 ## Not Implemented Yet
 
 - Full file access/visibility rules beyond auth-protected upload.
-- Deployment to Vercel/Render.
 - Video demo.
 
 ## Recommended Next Steps
 
 1. Add more React Testing Library tests for workout/profile flows.
-2. Prepare deployment.
-3. Record video demo.
+2. Record video demo.
