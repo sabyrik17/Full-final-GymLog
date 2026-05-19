@@ -2,7 +2,17 @@ import { createRouteHandler } from 'uploadthing/next';
 import { ourFileRouter } from './core';
 
 function cleanEnv(value) {
-  return value?.trim().replace(/^['"]|['"]$/g, '');
+  let cleaned = value?.trim();
+
+  if (!cleaned) {
+    return cleaned;
+  }
+
+  if (/^[A-Z0-9_]+\s*=/.test(cleaned)) {
+    cleaned = cleaned.slice(cleaned.indexOf('=') + 1).trim();
+  }
+
+  return cleaned.replace(/^['"]|['"]$/g, '').trim();
 }
 
 function getUploadThingCallbackUrl() {
