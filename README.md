@@ -149,8 +149,7 @@ Create `frontend/.env.local`:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000
 NEXT_PUBLIC_WS_URL=ws://localhost:5000
-UPLOADTHING_SECRET=sk_live_xxxxx
-UPLOADTHING_APP_ID=appid_xxxxx
+UPLOADTHING_TOKEN=base64_uploadthing_token_from_dashboard
 ```
 
 ## Frontend Routes

@@ -16,8 +16,7 @@ function getUploadThingCallbackUrl() {
 export const { GET, POST } = createRouteHandler({
   router: ourFileRouter,
   config: {
-    uploadthingSecret: cleanEnv(process.env.UPLOADTHING_SECRET),
-    uploadthingId: cleanEnv(process.env.UPLOADTHING_APP_ID),
+    token: cleanEnv(process.env.UPLOADTHING_TOKEN),
     callbackUrl: getUploadThingCallbackUrl(),
     logLevel: 'debug',
   },
