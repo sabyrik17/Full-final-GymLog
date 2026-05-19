@@ -21,6 +21,11 @@ const muscleGroupSchema = new mongoose.Schema(
       enum: ['upper', 'lower', 'core'],
       required: true,
     },
+    exerciseCount: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
   },
   { timestamps: true }
 );

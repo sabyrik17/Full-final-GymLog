@@ -15,7 +15,7 @@ export default function LandingPage() {
           <div className={styles.navLinks}>
             <Link href="#features">Функции</Link>
             <Link href="#how-it-works">Как это работает</Link>
-            <Link href="/auth/login" className="btn btn-primary">
+            <Link href="/login" className="btn btn-primary">
               Начать
             </Link>
           </div>
@@ -31,7 +31,7 @@ export default function LandingPage() {
             Записывай тренировки в свой дневник, следи за результатами. Так же сморти как занимаются твои друзья.
           </p>
           <div className={styles.heroButtons}>
-            <Link href="/auth/register" className="btn btn-primary">
+            <Link href="/register" className="btn btn-primary">
               Начать бесплатно
             </Link>
             <Link href="#features" className="btn btn-outline">
@@ -119,9 +119,9 @@ export default function LandingPage() {
         <div className={styles.footerContent}>
           <p>&copy; 2024 GymLog. Все права защищены.</p>
           <div className={styles.footerLinks}>
-            <a href="#">Конфиденциальность</a>
-            <a href="#">Условия</a>
-            <a href="#">Контакты</a>
+            <Link href="/privacy">Конфиденциальность</Link>
+            <Link href="/terms">Условия</Link>
+            <Link href="/contacts">Контакты</Link>
           </div>
         </div>
       </footer>

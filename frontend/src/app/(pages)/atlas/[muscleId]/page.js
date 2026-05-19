@@ -281,6 +281,63 @@ const muscleData = {
   }
 };
 
+const muscleAliases = {
+  'front-shoulders': 'shoulders',
+  'rear-shoulders': 'shoulders',
+  abdominals: 'abs',
+  quads: 'quadriceps',
+  'traps-back': 'traps',
+};
+
+const extraMuscleData = {
+  obliques: {
+    name: 'Косые мышцы живота',
+    description: 'Косые мышцы отвечают за повороты корпуса, боковые наклоны и стабильность талии.',
+    anatomy: 'Наружные и внутренние косые мышцы живота расположены по бокам корпуса и работают вместе с прямой и поперечной мышцами живота.',
+    functions: ['Поворот корпуса', 'Боковое сгибание туловища', 'Стабилизация позвоночника', 'Поддержка корпуса при приседаниях и тягах'],
+    exercises: [
+      { name: 'Русский твист', difficulty: 'Средний', equipment: 'Мяч или без оборудования' },
+      { name: 'Боковая планка', difficulty: 'Средний', equipment: 'Без оборудования' },
+      { name: 'Косые скручивания', difficulty: 'Лёгкий', equipment: 'Без оборудования' },
+      { name: 'Pallof press', difficulty: 'Средний', equipment: 'Кроссовер или резинка' },
+      { name: 'Дровосек в кроссовере', difficulty: 'Средний', equipment: 'Кроссовер' }
+    ],
+    tips: ['Держите корпус напряжённым во всём движении', 'Не тяните шею руками во время скручиваний', 'Работайте медленно, без рывков', 'Добавляйте упражнения на анти-ротацию', 'Тренируйте косые вместе с общим кором']
+  },
+  lowerback: {
+    name: 'Поясница',
+    description: 'Мышцы поясницы помогают разгибать спину, удерживать корпус и безопасно выполнять тяги.',
+    anatomy: 'Основная группа - разгибатели позвоночника. Они идут вдоль позвоночного столба и поддерживают нейтральное положение спины.',
+    functions: ['Разгибание позвоночника', 'Стабилизация корпуса', 'Поддержка таза и спины', 'Помощь в тяговых движениях'],
+    exercises: [
+      { name: 'Гиперэкстензия', difficulty: 'Лёгкий', equipment: 'Скамья для гиперэкстензии' },
+      { name: 'Мёртвая тяга', difficulty: 'Сложный', equipment: 'Штанга' },
+      { name: 'Доброе утро', difficulty: 'Средний', equipment: 'Штанга' },
+      { name: 'Bird dog', difficulty: 'Лёгкий', equipment: 'Без оборудования' },
+      { name: 'Румынская тяга', difficulty: 'Средний', equipment: 'Штанга или гантели' }
+    ],
+    tips: ['Держите спину нейтральной', 'Не гонитесь за весом, пока техника нестабильна', 'Разогревайте тазобедренные суставы', 'Контролируйте движение вниз', 'Останавливайтесь при резкой боли']
+  },
+  'calves-back': {
+    name: 'Икроножные мышцы',
+    description: 'Икроножные мышцы отвечают за подъём на носки, работу голеностопа и стабильность при ходьбе, беге и прыжках.',
+    anatomy: 'Икры включают икроножную и камбаловидную мышцы. Икроножная активнее работает стоя, камбаловидная - при согнутом колене.',
+    functions: ['Подъём пятки', 'Стабилизация голеностопа', 'Отталкивание при ходьбе и беге', 'Помощь в прыжках'],
+    exercises: [
+      { name: 'Подъёмы на носки стоя', difficulty: 'Лёгкий', equipment: 'Тренажёр или гантели' },
+      { name: 'Подъёмы на носки сидя', difficulty: 'Лёгкий', equipment: 'Тренажёр' },
+      { name: 'Подъёмы на одной ноге', difficulty: 'Средний', equipment: 'Без оборудования или гантель' },
+      { name: 'Жим носками в тренажёре', difficulty: 'Средний', equipment: 'Жим ногами' },
+      { name: 'Прыжки на скакалке', difficulty: 'Средний', equipment: 'Скакалка' }
+    ],
+    tips: ['Работайте в полной амплитуде', 'Делайте паузу в верхней точке', 'Не пружиньте слишком быстро', 'Комбинируйте варианты стоя и сидя', 'Следите за устойчивостью стопы']
+  }
+};
+
+const resolveMuscleData = (muscleId) => {
+  return muscleData[muscleId] || extraMuscleData[muscleId] || muscleData[muscleAliases[muscleId]];
+};
+
 export default function MuscleDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -288,8 +345,10 @@ export default function MuscleDetailPage() {
   const [muscle, setMuscle] = useState(null);
 
   useEffect(() => {
-    if (muscleId && muscleData[muscleId]) {
-      setMuscle(muscleData[muscleId]);
+    const resolvedMuscle = resolveMuscleData(muscleId);
+
+    if (muscleId && resolvedMuscle) {
+      setMuscle(resolvedMuscle);
     } else {
       router.push('/atlas');
     }

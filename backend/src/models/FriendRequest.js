@@ -17,6 +17,15 @@ const friendRequestSchema = new mongoose.Schema(
       enum: ['pending', 'accepted', 'rejected'],
       default: 'pending',
     },
+    message: {
+      type: String,
+      default: '',
+      maxlength: 300,
+    },
+    isRead: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

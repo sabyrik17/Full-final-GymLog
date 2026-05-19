@@ -1,5 +1,6 @@
 export default {
   testEnvironment: 'node',
+  maxWorkers: 1,
   transformIgnorePatterns: [
     'node_modules/(?!(supertest)/)',
   ],

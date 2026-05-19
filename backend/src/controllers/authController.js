@@ -3,7 +3,8 @@ import { generateToken } from '../config/jwt.js';
 
 export const register = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, password } = req.body;
+    const email = req.body.email?.trim().toLowerCase();
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Please provide name, email and password' });
@@ -34,7 +35,8 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { password } = req.body;
+    const email = req.body.email?.trim().toLowerCase();
 
     if (!email || !password) {
       return res.status(400).json({ message: 'Please provide email and password' });
@@ -45,7 +47,14 @@ export const login = async (req, res, next) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const isPasswordValid = await user.comparePassword(password);
+    let isPasswordValid = await user.comparePassword(password);
+
+    if (!isPasswordValid && user.password === password) {
+      user.password = password;
+      await user.save();
+      isPasswordValid = true;
+    }
+
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
@@ -86,12 +95,25 @@ export const getProfile = async (req, res, next) => {
 
 export const updateProfile = async (req, res, next) => {
   try {
-    const { name, weight, height, bio, isPublic } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.userId,
-      { name, weight, height, bio, isPublic },
-      { new: true, runValidators: true }
-    );
+    const { name, weight, height, bio, isPublic, avatar } = req.body;
+    const updates = {
+      ...(name !== undefined && { name }),
+      ...(weight !== undefined && { weight }),
+      ...(height !== undefined && { height }),
+      ...(bio !== undefined && { bio }),
+      ...(isPublic !== undefined && { isPublic }),
+      ...(avatar !== undefined && { avatar }),
+    };
+
+    const user = await User.findByIdAndUpdate(req.userId, updates, {
+      new: true,
+      runValidators: true,
+    }).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
     res.json(user);
   } catch (error) {
     next(error);

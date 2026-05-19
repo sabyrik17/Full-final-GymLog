@@ -36,6 +36,15 @@ const exerciseSchema = new mongoose.Schema(
       enum: ['barbell', 'dumbbell', 'cable', 'machine', 'bodyweight', 'kettlebell', 'bands'],
       default: 'bodyweight',
     },
+    mediaUrl: {
+      type: String,
+      default: null,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      default: null,
+    },
   },
   { timestamps: true }
 );

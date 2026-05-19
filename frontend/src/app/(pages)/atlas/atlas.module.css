@@ -1,268 +1,318 @@
 .pageContainer {
   min-height: 100vh;
   padding: var(--spacing-2xl) var(--spacing-lg);
-  background: linear-gradient(180deg, #070b17 0%, #0f172a 100%);
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 32rem),
+    linear-gradient(180deg, #070707 0%, #111315 100%);
   color: var(--color-text);
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: var(--spacing-2xl);
-  align-items: center;
+.atlasHeader {
   max-width: 1180px;
-  margin: 0 auto 3rem;
+  margin: 0 auto var(--spacing-xl);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
 }
 
-.heroText {
-  max-width: 640px;
+.atlasHeader h1 {
+  margin: 0 0 var(--spacing-sm);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: 0;
+}
+
+.atlasHeader p {
+  max-width: 660px;
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.7;
 }
 
 .subtitle {
   display: inline-block;
-  margin-bottom: var(--spacing-md);
-  color: var(--color-secondary);
-  font-size: 0.95rem;
+  margin-bottom: var(--spacing-sm);
+  color: #22c55e;
+  font-size: 0.9rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
 }
 
-.heroText h1 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  margin-bottom: var(--spacing-md);
-}
-
-.heroText p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--color-text-light);
-}
-
-.heroPreview {
+.headerControls {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
-  align-items: center;
-  justify-content: center;
-  background: rgba(15, 23, 42, 0.86);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-xl);
-  position: relative;
-}
-
-.viewToggle {
-  display: flex;
+  align-items: flex-end;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
+  flex: 0 0 auto;
 }
 
-.toggleBtn {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--color-text);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.9rem;
-}
-
-.toggleBtn:hover {
-  background: rgba(245, 158, 11, 0.1);
-  border-color: rgba(245, 158, 11, 0.3);
-}
-
-.toggleBtn.active {
-  background: rgba(245, 158, 11, 0.2);
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-.viewIcon {
-  margin-right: 0.4rem;
-}
-
-.bodyFigure {
-  width: 240px;
-  height: 440px;
-  position: relative;
-  background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
-  border-radius: 120px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 40px rgba(0, 0, 0, 0.25);
-  display: flex;
+.backLink {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 var(--spacing-md);
+  border: 1px solid rgba(245, 158, 11, 0.85);
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.bodySvg {
-  width: 120px;
-  height: 220px;
+.backLink:hover {
+  background: rgba(245, 158, 11, 0.18);
+  transform: translateY(-1px);
+}
+
+.segmentGroup {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.segmentButton {
+  min-height: 2.35rem;
+  padding: 0 var(--spacing-md);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: #e5e7eb;
   cursor: pointer;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.musclePath {
-  cursor: pointer;
-  transition: all 0.2s ease;
+.segmentButton:hover {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
 }
 
-.musclePath:hover {
-  fill: rgba(245, 158, 11, 0.6) !important;
-  stroke: rgba(245, 158, 11, 0.9) !important;
+.active {
+  border-color: rgba(245, 158, 11, 0.9);
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
 }
 
-.muscleHover {
-  pointer-events: none;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.muscleTooltip {
-  position: absolute;
-  bottom: var(--spacing-md);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-dark);
-  color: var(--color-text);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  font-size: 0.9rem;
-  font-weight: 600;
-  white-space: nowrap;
-  box-shadow: var(--shadow-lg);
-  z-index: 10;
-}
-
-.contentSection {
+.atlasWorkspace {
   max-width: 1180px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: var(--spacing-2xl);
+  grid-template-columns: minmax(220px, 0.72fr) minmax(300px, 1.08fr) minmax(280px, 0.86fr);
+  gap: var(--spacing-lg);
+  align-items: stretch;
 }
 
 .selectorPanel,
 .detailsPanel {
-  background: #111827;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl, 1.25rem);
-  padding: var(--spacing-2xl);
+  min-width: 0;
+  background: rgba(18, 20, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: var(--spacing-xl);
+}
+
+.panelLabel,
+.detailLabel {
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
+  color: #22c55e;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .selectorPanel h2,
 .detailsPanel h2 {
-  margin-bottom: var(--spacing-lg);
+  margin: 0 0 var(--spacing-lg);
 }
 
 .muscleList {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing-md);
+  gap: 0.65rem;
 }
 
 .muscleButton {
   width: 100%;
-  padding: var(--spacing-md);
-  border: 1px solid transparent;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--color-text);
-  font-weight: 600;
+  min-height: 3rem;
+  padding: 0 var(--spacing-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #f8fafc;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-weight: 700;
   text-align: left;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .muscleButton:hover {
-  border-color: rgba(245, 158, 11, 0.5);
-  background: rgba(245, 158, 11, 0.08);
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.45);
 }
 
-.active {
-  border-color: var(--color-primary);
-  background: rgba(245, 158, 11, 0.16);
+.muscleButton.active {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.9);
+  color: #fbbf24;
+}
+
+.bodyStage {
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.svgContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8fafc;
+}
+
+.atlasSvg {
+  width: 100%;
+  max-width: 660px;
+  height: auto;
+  display: block;
+}
+
+/* Стили для мышечных групп */
+.muscleGroup {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #9ca3af;
+}
+
+.muscleGroup:hover {
+  color: #fcd34d;
+}
+
+.muscleGroup.active {
+  color: #f59e0b;
+}
+
+/* Анатомические линии */
+.anatomyLines {
+  pointer-events: none;
+}
+
+.anatomyLines path {
+  stroke: #484a68;
+  stroke-width: 3.52;
+  stroke-linecap: round;
+  fill: none;
 }
 
 .detailCard {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
-}
-
-.detailLabel {
-  display: inline-block;
-  color: var(--color-secondary);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+  gap: var(--spacing-md);
+  min-height: 100%;
 }
 
 .detailCard h2 {
   margin: 0;
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  letter-spacing: 0;
 }
 
 .detailCard p {
-  color: var(--color-text-light);
-  line-height: 1.8;
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.75;
+}
+
+.exercisesBlock {
+  margin-top: var(--spacing-md);
 }
 
 .exercisesBlock h3 {
-  margin-bottom: var(--spacing-md);
+  margin: 0 0 var(--spacing-md);
+  font-size: 1rem;
 }
 
 .exercisesBlock ul {
-  list-style: none;
+  display: grid;
+  gap: 0.7rem;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 0.75rem;
+  list-style: none;
 }
 
-.exerciseItem {
+.exercisesBlock li {
   padding: var(--spacing-sm) var(--spacing-md);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  color: #f8fafc;
 }
 
-@media (max-width: 960px) {
-  .hero,
-  .contentSection {
-    grid-template-columns: 1fr;
+.primaryAction {
+  width: 100%;
+  min-height: 3rem;
+  margin-top: auto;
+  border: 1px solid rgba(245, 158, 11, 0.85);
+  border-radius: 8px;
+  background: #f59e0b;
+  color: #111827;
+  cursor: pointer;
+  font-weight: 900;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.primaryAction:hover {
+  background: #fbbf24;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1080px) {
+  .atlasHeader {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
-  .muscleList {
-    grid-template-columns: 1fr;
+  .headerControls {
+    align-items: flex-start;
+  }
+
+  .atlasWorkspace {
+    grid-template-columns: minmax(240px, 0.8fr) minmax(300px, 1.2fr);
+  }
+
+  .detailsPanel {
+    grid-column: 1 / -1;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   .pageContainer {
     padding: var(--spacing-xl) var(--spacing-md);
   }
 
-  .heroPreview {
-    padding: var(--spacing-lg);
+  .segmentGroup {
+    flex-wrap: wrap;
   }
 
-  .bodyFigure {
-    width: 200px;
-    height: 360px;
+  .atlasWorkspace {
+    grid-template-columns: 1fr;
   }
 
-  .bodySvg {
-    width: 100px;
-    height: 180px;
+  .bodyStage {
+    min-height: 500px;
   }
 }

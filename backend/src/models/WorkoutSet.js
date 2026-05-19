@@ -12,6 +12,11 @@ const workoutSetSchema = new mongoose.Schema(
       ref: 'Exercise',
       required: true,
     },
+    setNumber: {
+      type: Number,
+      default: 1,
+      min: 1,
+    },
     sets: {
       type: Number,
       required: [true, 'Please provide number of sets'],
@@ -30,6 +35,11 @@ const workoutSetSchema = new mongoose.Schema(
     isRecord: {
       type: Boolean,
       default: false,
+    },
+    notes: {
+      type: String,
+      default: '',
+      maxlength: 500,
     },
   },
   { timestamps: true }

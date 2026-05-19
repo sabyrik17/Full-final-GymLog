@@ -10,6 +10,7 @@ export default function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { register } = useContext(AuthContext);
@@ -18,6 +19,17 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (password !== confirmPassword) {
+      setError('Пароли не совпадают');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Пароль должен содержать минимум 6 символов');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -32,57 +44,175 @@ export default function RegisterPage() {
 
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h2>Создать аккаунт</h2>
-        <p>Присоединяйся к GymLog и начни вести свои тренировки</p>
+      {/* Background decoration */}
+      <div className={styles.bgDecoration}>
+        <div className={styles.bgCircle1}></div>
+        <div className={styles.bgCircle2}></div>
+        <div className={styles.bgCircle3}></div>
+      </div>
 
-        {error && <div className={styles.error}>{error}</div>}
-
-        <div className={styles.formGroup}>
-          <label htmlFor="name">Имя</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Иван Иванов"
-            required
-          />
+      <div className={styles.formCard}>
+        <div className={styles.formHeader}>
+          <div className={styles.logoSection}>
+            <span className={styles.logoIcon}>💪</span>
+            <h1 className={styles.logoText}>GymLog</h1>
+          </div>
+          <h2 className={styles.title}>Создать аккаунт</h2>
+          <p className={styles.subtitle}>Начните свой фитнес-путь уже сегодня</p>
         </div>
 
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email@пример.ру"
-            required
-          />
+        <form className={styles.form} onSubmit={handleSubmit}>
+          {error && (
+            <div className={styles.errorAlert}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <span>{error}</span>
+            </div>
+          )}
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="name">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Имя
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Иван Иванов"
+              required
+              autoComplete="name"
+              minLength={2}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              required
+              autoComplete="email"
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Пароль
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              autoComplete="new-password"
+              minLength={6}
+            />
+            <span className={styles.inputHint}>Минимум 6 символов</span>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="confirmPassword">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Подтвердите пароль
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              autoComplete="new-password"
+            />
+          </div>
+
+          <div className={styles.termsCheck}>
+            <label className={styles.termsLabel}>
+              <input type="checkbox" required />
+              <span>
+                Я согласен с <Link href="/terms" className={styles.termsLink}>условиями использования</Link> и <Link href="/privacy" className={styles.termsLink}>политикой конфиденциальности</Link>
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" className={styles.submitBtn} disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <span className={styles.spinner}></span>
+                <span>Создание аккаунта...</span>
+              </>
+            ) : (
+              <>
+                <span>Зарегистрироваться</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14"/>
+                  <path d="M12 5l7 7-7 7"/>
+                </svg>
+              </>
+            )}
+          </button>
+        </form>
+
+        <div className={styles.formFooter}>
+          <p>
+            Уже есть аккаунт?{' '}
+            <Link href="/login" className={styles.loginLink}>
+              Войти
+            </Link>
+          </p>
         </div>
 
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Пароль</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-            minLength={6}
-            required
-          />
+        <div className={styles.featuresPreview}>
+          <div className={styles.featureItem}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span>Бесплатно навсегда</span>
+          </div>
+          <div className={styles.featureItem}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Добавляйте друзей</span>
+          </div>
+          <div className={styles.featureItem}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span>Достигайте целей</span>
+          </div>
         </div>
-
-        <button type="submit" className="btn btn-primary" disabled={isLoading}>
-          {isLoading ? 'Создание...' : 'Зарегистрироваться'}
-        </button>
-
-        <p className={styles.footer}>
-          Уже есть аккаунт? <Link href="/auth/login">Войти</Link>
-        </p>
-      </form>
+      </div>
     </div>
   );
 }
