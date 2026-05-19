@@ -28,6 +28,5 @@ export const { GET, POST } = createRouteHandler({
   config: {
     token: cleanEnv(process.env.UPLOADTHING_TOKEN),
     callbackUrl: getUploadThingCallbackUrl(),
-    logLevel: 'debug',
   },
 });
