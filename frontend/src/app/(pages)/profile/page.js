@@ -151,7 +151,7 @@ export default function ProfilePage() {
                     return isUploading ? 'Загрузка...' : 'Загрузить фото';
                   },
                   allowedContent() {
-                    return 'Картинка до 2MB';
+                    return 'Картинка до 8MB';
                   },
                 }}
                 appearance={{

@@ -5,10 +5,20 @@ function cleanEnv(value) {
   return value?.trim().replace(/^['"]|['"]$/g, '');
 }
 
+function getUploadThingCallbackUrl() {
+  const appUrl = cleanEnv(process.env.NEXT_PUBLIC_APP_URL);
+  const vercelUrl = cleanEnv(process.env.VERCEL_URL);
+  const origin = appUrl || (vercelUrl ? `https://${vercelUrl}` : undefined);
+
+  return origin ? `${origin.replace(/\/$/, '')}/api/uploadthing` : undefined;
+}
+
 export const { GET, POST } = createRouteHandler({
   router: ourFileRouter,
   config: {
     uploadthingSecret: cleanEnv(process.env.UPLOADTHING_SECRET),
     uploadthingId: cleanEnv(process.env.UPLOADTHING_APP_ID),
+    callbackUrl: getUploadThingCallbackUrl(),
+    logLevel: 'debug',
   },
 });

@@ -33,7 +33,7 @@ async function requireAuth({ req }) {
 export const ourFileRouter = {
   avatarUploader: f({
     image: {
-      maxFileSize: '2MB',
+      maxFileSize: '8MB',
       maxFileCount: 1,
     },
   })
